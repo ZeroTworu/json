@@ -8,6 +8,7 @@ from user.models import BasicUser
 # Serializer = {}
 # ListField = []
 
+# Чтобы достать поля из сериалайзера
 # SerializerClass().fields.items():
 
 
