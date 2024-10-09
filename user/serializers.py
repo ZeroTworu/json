@@ -103,3 +103,7 @@ class Step2Serializer(serializers.Serializer):
     #     help_text='Работы'
     # )
     # new_jobs_dict_field = JobSerializer()
+
+
+class Step3Serializer(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
