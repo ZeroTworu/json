@@ -46,19 +46,20 @@ class Step1Serializer(serializers.Serializer):
     snils = serializers.CharField(max_length=255, allow_blank=True, help_text='СНИЛС')
     is_ilc = serializers.BooleanField(help_text='Имеете ли вы индивидуальный лицевой счет (ИЛС) в пенсионном фонде РФ?')
 
-    # class JobSerializer(serializers.Serializer):
-    #     class JobSerializer2(serializers.Serializer):
-    #         name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
-    #         position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
-    #         avg_salary = serializers.FloatField(help_text='Укажите ваш среднемесячный доход по 2-Ндфл')
-    #     name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
-    #     position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
-    #
-    # new_jobs_list_field = serializers.ListSerializer(
-    #     child=JobSerializer(),
-    #     help_text='Работы'
-    # )
-    # new_jobs_dict_field = JobSerializer()
+    class JobSerializer(serializers.Serializer):
+        class JobSerializer2(serializers.Serializer):
+            name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
+            position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
+            avg_salary = serializers.FloatField(help_text='Укажите ваш среднемесячный доход по 2-Ндфл')
+        name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
+        position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
+        nested = JobSerializer2()
+
+    new_jobs_list_field = serializers.ListSerializer(
+        child=JobSerializer(),
+        help_text='Работы'
+    )
+    new_jobs_dict_field = JobSerializer()
 
 
 class Step2Serializer(serializers.Serializer):
@@ -89,20 +90,6 @@ class Step2Serializer(serializers.Serializer):
     avg_monthly_salary = serializers.FloatField(help_text='Укажите среднемесячную сумму дохода в рублях')
     is_bills_for_fns = serializers.BooleanField(
         help_text='Вносите ли вы чеки по доходу самозанятого в личный кабинет ФНС?')
-
-    # class JobSerializer(serializers.Serializer):
-    #     class JobSerializer2(serializers.Serializer):
-    #         name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
-    #         position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
-    #         avg_salary = serializers.FloatField(help_text='Укажите ваш среднемесячный доход по 2-Ндфл')
-    #     name = serializers.CharField(max_length=255, help_text='Укажите наименование работадателя')
-    #     position = serializers.CharField(max_length=255, help_text='Укажите вашу должность')
-    #
-    # new_jobs_list_field = serializers.ListSerializer(
-    #     child=JobSerializer(),
-    #     help_text='Работы'
-    # )
-    # new_jobs_dict_field = JobSerializer()
 
 
 class Step3Serializer(serializers.Serializer):
