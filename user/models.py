@@ -6,4 +6,3 @@ from django.db import models
 class BasicUser(models.Model):
     step1 = models.JSONField(default=dict, blank=True)
     step2 = models.JSONField(default=dict, blank=True)
-    step3 = models.JSONField(default=dict, blank=True)
