@@ -10,10 +10,17 @@
 # Чтобы достать поля из сериалайзера
 # SerializerClass().fields.items():
 
+
+from user.json_service import JsonService
+from user.models import BasicUser
+
+
 class JsonMigrator:
     @classmethod
     def migrate(cls):
-        # Write your code here
-        pass
+        users = BasicUser.objects.all()
+        for user in users:
+            service = JsonService(user)
+            service.update()
 
 
