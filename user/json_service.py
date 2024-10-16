@@ -46,6 +46,7 @@ class JsonService:
         self._update_dict()
         setattr(self._user, field_name, self._field)
         self._user.save()
+        print(self._field)
 
     def _update_dict(self):
         for name, _type in self._serializer.get_fields().items():
@@ -88,6 +89,10 @@ class JsonService:
         self._keys.pop()
 
     def _update_list_field(self, value_name: 'str'):
+        if value_name.startswith('empty'):
+            self._set_value([])
+            return
+
         if not self._has_value():
             self._set_value([{}])
         field = self._base_serializer.get_fields().get(value_name)
